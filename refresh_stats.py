@@ -1,43 +1,21 @@
 import mysql.connector
-import requests
-import json
-import time
-
-
-
-url = "https://e621.net/tags.json"
-
-querystring = {"page": "0", "search[hide_empty]": "yes", "search[order]": "count"}
-
-headers = {
-    "User-Agent": "nekuake/e621Stats"}  # It is mandatory to set a valid UserAgent. Spoofing one (like Chrome's) could block your IP address to make
-# new requests.
-
-response = requests.request("GET", url, data="", headers=headers, params=querystring)
-finalDiccionary = []
-for x in (range(1, 750)):  #E621 doesn't serve pages after the 750th.
-    querystring["page"] = x
-    response = requests.request("GET", url, data="", headers=headers, params=querystring)
-    tempDictionary = json.loads(response.text)
-    for y in (range(0, len(tempDictionary))):
-        finalDiccionary.append(tempDictionary[int(y)])
-    time.sleep(0.5)  # Delay mandatory by the E621 API. 2 requests per second.
-
-# JSON Export
-with open("results.json", "w") as f:
-    json.dump(finalDiccionary, f)
-    f.close()
+import psutil
 
 # Dump to SQL
 mydb = mysql.connector.connect(
-  host="",
-  user="",
-  password=""
+  host="localhost",
+  user="root",
+  password="TestingPassword",
+  database="pesao"
 )
+
+def get_overall_usage():
+  pass
 mycursor = mydb.cursor()
 print(mydb)
 mycursor = mydb.cursor()
-mycursor.execute("SHOW DATABASES")
+mycursor.execute("SELECT * FROM penes")
 
-for x in mycursor:
-  print(x)
+myresult = mycursor.fetchall()
+
+#mycursor.execute("CREATE TABLE alvaropesao (id INT AUTO_INCREMENT PRIMARY KEY, pesao VARCHAR(255), mupesao VARCHAR(255))")
