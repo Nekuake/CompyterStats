@@ -6,3 +6,5 @@ results.json
 mysite/mysite/__pycache__/
 
 mysite/polls/__pycache__/
+
+mysite/polls/migrations/

@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production secret! Obviously this is not used in prod and should. Gitguardian, please, calm down.
 SECRET_KEY = 'django-insecure-(6@v8se0w!7y(uw-&us4b4mo1k38cjdauv*$&n^o4g+4q^s^m+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,11 +73,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+#Example information, please do not leave as it is (except ENGINE)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'compyterstats',
+        'USER': 'root',
+        'PASSWORD': 'TestingPassword',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 

@@ -27,7 +27,7 @@ class DB:
 
 
 
-# Create a database in case there are none created.
+# Create a database in case there are none created. THIS MUST BE EXECUTED BEFORE DJANGO AS IT DOESN'T CREATE MYSQL DATABASES
 def create_database(host, user, password, new_database_name):
     mydb = mysql.connector.connect(
         host=host,
