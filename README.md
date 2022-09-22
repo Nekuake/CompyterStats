@@ -12,4 +12,4 @@ This and other design choices are yet to be made and determined. I'm always open
 ## What's the state of the project right now?
 As of September 13th of 2022, this projects is almost just testing of the Django framework. Any secret data here is not being used in any environment exposed to the Internet. You can scan for passwords here and make a pull request if you want to but it will be most probably ignored. 
 
-On the other hand, if you have any suggestion that isn't related to fake confidential info being exposed, feel free to ping me or make a PR! I'm learning and any advide is greatly appreaciated.
+On the other hand, if you have any suggestion that isn't related to fake confidential info being exposed, feel free to ping me or make a PR! I'm learning and any advise is greatly appreaciated.
