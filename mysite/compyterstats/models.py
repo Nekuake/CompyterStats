@@ -21,6 +21,6 @@ class Timestamp(models.Model):
 
 class Process(models.Model):
     captured_timestamp = models.ForeignKey(Timestamp, on_delete=models.CASCADE)
-    pid=models.IntegerField('process id', primary_key=True)
+    pid=models.IntegerField('process id')
     cpu_usage=models.FloatField('cpu usage per process')
     
