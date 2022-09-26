@@ -10,3 +10,5 @@ mysite/polls/__pycache__/
 mysite/polls/migrations/
 
 mysite/compyterstats/__pycache__/
+
+sample.json
