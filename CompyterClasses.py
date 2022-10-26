@@ -24,10 +24,18 @@ class Timestap:
     def add_process_to_timestamp(self, process):
         self.processes.append(process)
 
-def get_all_process(processes):
+def get_all_process():
     print("Getting processes")
+    temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
     process_list = []
-    for current_psutil_process in processes:
+    for current_psutil_process in temp_processes:
+        try:
+            with current_psutil_process.oneshot():
+                current_psutil_process.cpu_percent()
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+    time.sleep(0.5)
+    for current_psutil_process in temp_processes:
         try:
             with current_psutil_process.oneshot():
                 temp_process_dict = {
@@ -46,11 +54,9 @@ def get_all_process(processes):
             continue
     return process_list
 
-processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
 
-ls = get_all_process(processes)
-time.sleep(1)
-ls = get_all_process(processes)
+
+ls = get_all_process()
 ls.sort(key=lambda x: x['cpu_percent'], reverse=True)
 
 
