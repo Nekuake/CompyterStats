@@ -1,7 +1,8 @@
 import datetime
-
+import socket
 import psutil
 import time
+import netifaces
 import os
 import json
 
@@ -52,3 +53,11 @@ class Timestap:
                 continue
         self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)
 
+class Computer:
+
+    def __init__(self):
+        self.name=socket.gethostname()
+        self.network_interfaces=netifaces.interfaces()
+
+        for interface in self.network_interfaces:
+            pass
