@@ -27,8 +27,6 @@ class Timestap:
         self.cpu_load_list = psutil.cpu_percent(interval=interval_cpu_load_calculation, percpu=True)
         self.processes = []
 
-    def add_process_to_timestamp(self, process):
-        self.processes.append(process)
 
     def get_all_process(self):
         print("Getting processes")
@@ -53,11 +51,9 @@ class Timestap:
                 continue
         self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)
 
+
 class Computer:
 
     def __init__(self):
-        self.name=socket.gethostname()
-        self.network_interfaces=netifaces.interfaces()
-
-        for interface in self.network_interfaces:
-            pass
+        self.name = socket.gethostname()
+        self.network_interfaces = netifaces.interfaces()
