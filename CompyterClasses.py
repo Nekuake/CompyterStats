@@ -3,8 +3,7 @@ import socket
 import psutil
 import time
 import netifaces
-import os
-import json
+
 
 
 class Pyrocess:  # Not setting the class name to "Process"
@@ -56,4 +55,9 @@ class Computer:
 
     def __init__(self):
         self.name = socket.gethostname()
-        self.network_interfaces = netifaces.interfaces()
+        self.network_interfaces = netifaces.interfaces()  #This provides a list of strings with the name of the interfaces
+        self.timestamps=[]
+
+    def add_timestamp(self):
+        new_timestamp=Timestap()
+        self.timestamps.append(new_timestamp)
