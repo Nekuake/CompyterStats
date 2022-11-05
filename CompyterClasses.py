@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import socket
 import psutil
 import time
@@ -19,15 +19,13 @@ class Pyrocess:  # Not setting the class name to "Process"
 
 class Timestap:
 
-    def __init__(self, interval_cpu_load_calculation):
-        self.captured_time = datetime.time
+    def __init__(self):
+        self.captured_time = str(datetime.now())
         # General stats
         self.cpu_freq = psutil.cpu_freq()
-        self.cpu_load_list = psutil.cpu_percent(interval=interval_cpu_load_calculation, percpu=True)
+        self.cpu_load_list = psutil.cpu_percent(interval=0.5, percpu=True)
         self.processes = []
-
-
-    def get_all_process(self):
+        #Get all processes
         print("Getting processes")
         temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
         process_list = []
@@ -48,7 +46,8 @@ class Timestap:
                                                    current_psutil_process.memory_info().vms))
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
-        self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)
+        #self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)
+
 
 
 class Computer:
@@ -57,6 +56,7 @@ class Computer:
         self.name = socket.gethostname()
         self.network_interfaces = netifaces.interfaces()  #This provides a list of strings with the name of the interfaces
         self.timestamps=[]
+
 
     def add_timestamp(self):
         new_timestamp=Timestap()
