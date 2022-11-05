@@ -32,9 +32,10 @@ def main():
             time.sleep(time_interval)
         except KeyboardInterrupt:
             save_data_to_file(this_computer)
+            sys.exit(0)
         except Exception:
             traceback.print_exc(file=sys.stdout)
-        sys.exit(0)
+            sys.exit(0)
 
 
 if __name__ == "__main__":
