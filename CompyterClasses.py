@@ -24,11 +24,11 @@ class Timestap:
         # General stats
         self.cpu_freq = psutil.cpu_freq()
         self.cpu_load_list = psutil.cpu_percent(interval=0.5, percpu=True)
-        self.processes = []
+        self.processes = {}
         #Get all processes
         print("Getting processes")
         temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
-        process_list = []
+        process_list = {}
         for current_psutil_process in temp_processes:
             try:
                 with current_psutil_process.oneshot():
@@ -39,11 +39,11 @@ class Timestap:
         for current_psutil_process in temp_processes:
             try:
                 with current_psutil_process.oneshot():
-                    self.processes.append(Pyrocess(current_psutil_process.pid, current_psutil_process.name(),
+                    self.processes.update({current_psutil_process.name():Pyrocess(current_psutil_process.pid, current_psutil_process.name(),
                                                    (current_psutil_process.cpu_percent() / psutil.cpu_count()),
                                                    current_psutil_process.io_counters(),
                                                    current_psutil_process.memory_info().rss,
-                                                   current_psutil_process.memory_info().vms))
+                                                   current_psutil_process.memory_info().vms)})
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
         #self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)
@@ -55,9 +55,9 @@ class Computer:
     def __init__(self):
         self.name = socket.gethostname()
         self.network_interfaces = netifaces.interfaces()  #This provides a list of strings with the name of the interfaces
-        self.timestamps=[]
+        self.timestamps={}
 
 
     def add_timestamp(self):
         new_timestamp=Timestap()
-        self.timestamps.append(new_timestamp)
+        self.timestamps[str(datetime.now())]=new_timestamp
