@@ -26,7 +26,6 @@ class Timestap:
         self.cpu_load_list = psutil.cpu_percent(interval=0.5, percpu=True)
         self.processes = {}
         #Get all processes
-        print("Getting processes")
         temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
         process_list = {}
         for current_psutil_process in temp_processes:
