@@ -5,13 +5,11 @@ from django.utils import timezone
 
 class Computer(models.Model):
     name = models.CharField(max_length=200)
-    private_ip=models. CharField(max_length=20)
-    date_added = models.DateTimeField('date added')
+    timestamps=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Timestamp(models.Model):
-    origin_computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
     datetime_captured = models.DateTimeField('date captured', primary_key=True)
     avg_cpu_usage=models.FloatField('overall cpu usage')
     virtual_memory_usage=models.FloatField('overall memory usage')
@@ -19,8 +17,15 @@ class Timestamp(models.Model):
     disk_usage=models.FloatField('disk usage')
     disk_capacity=models.FloatField('disk capacity')
 
+
 class Process(models.Model):
+    timestamps=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     captured_timestamp = models.ForeignKey(Timestamp, on_delete=models.CASCADE)
     pid=models.IntegerField('process id')
     cpu_usage=models.FloatField('cpu usage per process')
+    name=models.CharField(max_length=200)
+    io_counter=models.CharField(max_lenght=200)
+    memory_data=models.FloatField()
+    virtual_memory_data=models.FloatField()
+
     
