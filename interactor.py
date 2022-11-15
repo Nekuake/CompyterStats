@@ -1,4 +1,5 @@
 import mysql.connector
+from CompyterClasses import Computer, Timestamp
 
 
 # This data is up to the one implementing it. Please don't leave it as it is, specially if you will have the DB exposed.
@@ -25,6 +26,8 @@ class DB:
             query=query+")"
             self.mydb.cursor().execute(query)
 
+    def insert_to_table(self, timestamp):
+        pass
 
 
 # Create a database in case there are none created. THIS MUST BE EXECUTED BEFORE DJANGO AS IT DOESN'T CREATE MYSQL DATABASES

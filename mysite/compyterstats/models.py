@@ -5,7 +5,6 @@ from django.utils import timezone
 
 class Computer(models.Model):
     name = models.CharField(max_length=200)
-    timestamps=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -16,10 +15,11 @@ class Timestamp(models.Model):
     virtual_memory_capacity=models.FloatField('max memory capacity')
     disk_usage=models.FloatField('disk usage')
     disk_capacity=models.FloatField('disk capacity')
+    computer=models.ForeignKey('computer', on_delete=models.CASCADE)
 
 
 class Process(models.Model):
-    timestamps=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
+    timestamp=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     captured_timestamp = models.ForeignKey(Timestamp, on_delete=models.CASCADE)
     pid=models.IntegerField('process id')
     cpu_usage=models.FloatField('cpu usage per process')

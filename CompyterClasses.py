@@ -17,7 +17,7 @@ class Pyrocess:  # Not setting the class name to "Process"
         self.virtual_memory = vmemory
 
 
-class Timestap:
+class Timestamp:
 
     def __init__(self):
         self.captured_time = str(datetime.now())
