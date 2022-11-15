@@ -16,3 +16,5 @@ sample.json
 __pycache__/
 
 compyter.json
+
+*.sqlite3
