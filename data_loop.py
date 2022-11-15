@@ -4,6 +4,7 @@ import time
 import traceback
 import jsonpickle
 from CompyterClasses import Computer
+from interactor import DB
 
 
 # The aim with this script is to have at least one continuous loop of data gathering.
