@@ -20,6 +20,7 @@ class Timestamp(models.Model):
 
 
 class Process(models.Model):
+    id=models.AutoField(primary_key=True)
     origin_timestamp=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     pid=models.IntegerField('process id')
     cpu_usage=models.FloatField('cpu usage per process')
