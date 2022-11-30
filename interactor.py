@@ -14,19 +14,23 @@ class DB:
             database=database
         )
 
-
     def create_table(self, table_name, column_names, column_types):
-        if len(column_names)!= len(column_types):
+        if len(column_names) != len(column_types):
             raise Exception("Error: not the same number of column names to types")
         else:
-            query="CREATE TABLE",table_name+"("
+            query = "CREATE TABLE", table_name + "("
             for x in column_names:
-                query=query+column_names[x]+column_types[x]+","
-            query=query[:-1]
-            query=query+")"
+                query = query + column_names[x] + column_types[x] + ","
+            query = query[:-1]
+            query = query + ")"
             self.mydb.cursor().execute(query)
 
     def insert_to_table(self, timestamp):
+        # Computer: INSERT INTO compyterstats_computer (name) VALUES('name');
+        # Timestamp:INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ();
+        # Process: INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ()
+
+
         pass
 
 

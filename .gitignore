@@ -18,3 +18,5 @@ __pycache__/
 compyter.json
 
 *.sqlite3
+
+compyter_stats/compyterstats/migrations/0002_alter_computer_id.py
