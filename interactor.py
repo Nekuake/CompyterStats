@@ -31,7 +31,6 @@ class DB:
         self.mydb.cursor().execute(query)
 
     def insert_timestamp_to_table(self, timestamp, ):
-        query
 
         # Timestamp:INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ();
         # Process: INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ()
