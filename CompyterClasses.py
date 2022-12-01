@@ -25,8 +25,8 @@ class Timestamp:
         self.cpu_load_list = psutil.cpu_percent(interval=0.5, percpu=True)
         self.vmemory_capacity = psutil.virtual_memory().available >> 20
         self.vmemory_usage = psutil.virtual_memory().total >> 20
-        self.storage_free = psutil.disk_usage("C:\\").free >> 20
-        self.storage_total = psutil.disk_usage("C:\\").total >> 20
+        self.storage_free = psutil.disk_usage("C://").free >> 20
+        self.storage_total = psutil.disk_usage("C://").total >> 20
         self.processes = {}
         # Get all processes
         temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
