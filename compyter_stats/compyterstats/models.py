@@ -10,7 +10,7 @@ class Computer(models.Model):
         return self.name
 
 class Timestamp(models.Model):
-    datetime_captured = models.DateTimeField('date captured', primary_key=True)
+    datetime_captured = models.CharField('date captured',max_length=30, primary_key=True)
     avg_cpu_usage=models.FloatField('overall cpu usage')
     virtual_memory_usage=models.FloatField('overall memory usage')
     virtual_memory_capacity=models.FloatField('max memory capacity')
