@@ -43,8 +43,7 @@ class Timestamp:
                 with current_psutil_process.oneshot():
                     self.processes.update({current_psutil_process.name(): Pyrocess(current_psutil_process.pid,
                                                                                    current_psutil_process.name(),
-                                                                                   (
-                                                                                               current_psutil_process.cpu_percent() / psutil.cpu_count()),
+                                                                                   (current_psutil_process.cpu_percent() / psutil.cpu_count()),
                                                                                    current_psutil_process.io_counters(),
                                                                                    current_psutil_process.memory_info().rss,
                                                                                    current_psutil_process.memory_info().vms)})
