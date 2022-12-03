@@ -4,6 +4,9 @@ Check the status of multiple computers in your LAN in a web-interface. This incl
 
 I'm planning to make the MySQL database compatible with Grapahana with a how-to guide on setting it up.
 
+## Requirements
+The only required thing apart from the dependencies stated in the requirements.txt is a MySQL installation for the main host computer.
+
 ## How does it (going to) work?
 A main computer hosts the web interface, showing data gathered from all the others computers. These send the data to the main computer so it can include the information in the main database. This design implies that the program will leave a heavier footprint in the main computer but a smaller one in the other ones.
 
