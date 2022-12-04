@@ -41,11 +41,19 @@ class DB:
                 timestamp.storage_total + "," + \
                 id + ")"
         self.mydb.cursor().execute(query)
+        for process in timestamp.processes:
+            query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES (" + \
+                    process.pid + "," + \
+                    process.cpu_usage + "," + \
+                    process.name + "," + \
+                    process.io_counter + "," + \
+                    process.memory_data + "," + \
+                    process.virtual_memory_data + "," + \
+                    timestamp.captured_time + ")"
+
 
         # Timestamp:INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ();
         # Process: INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ()
-
-        pass
 
 
 # Create a database in case there are none created. THIS MUST BE EXECUTED BEFORE DJANGO AS IT DOESN'T CREATE MYSQL DATABASES
