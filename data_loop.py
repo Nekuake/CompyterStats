@@ -29,8 +29,7 @@ def main():
     this_computer = Computer()
     database.insert_computer_to_table(this_computer)
     while True:
-        this_computer.add_timestamp()
-
+        database.insert_timestamp_to_table(this_computer.add_timestamp(), this_computer)
         print("[", datetime.now(), "]: Saved timestamp. Waiting", time_interval, "secs.")
         try:
             time.sleep(time_interval)

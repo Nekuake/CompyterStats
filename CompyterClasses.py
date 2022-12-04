@@ -61,3 +61,4 @@ class Computer:
     def add_timestamp(self):
         new_timestamp = Timestamp()
         self.timestamps[str(datetime.now())] = new_timestamp
+        return new_timestamp

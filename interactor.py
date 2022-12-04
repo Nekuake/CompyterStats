@@ -8,10 +8,10 @@ from CompyterClasses import Computer, Timestamp
 class DB:
     def __init__(self, host, user, password, database):
         self.mydb = mysql.connector.connect(
-            host=host,
-            user=user,
-            password=password,
-            database=database
+            host="host",
+            user="user",
+            password="pass",
+            database="database"
         )
 
     def create_table(self, table_name, column_names, column_types):
@@ -25,12 +25,15 @@ class DB:
             query = query + ")"
             self.mydb.cursor().execute(query)
 
+
     def insert_computer_to_table(self, computer):
         # Computer: INSERT INTO compyterstats_computer (name) VALUES('name');
         query = "INSERT INTO compyterstats_computer (id,name) VALUES('" + computer.id + "','" + computer.name + "')"
-        self.mydb.cursor().execute(query)
+        print(query)
+        print(str(self.mydb.cursor().execute(query)))
+        self.mydb.commit()
 
-    def insert_timestamp_to_table(self, timestamp, id):
+    def insert_timestamp_to_table(self, timestamp, computer):
         query = "INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, " \
                 "virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ('" + \
                 timestamp.captured_time + "','" + \
@@ -39,7 +42,7 @@ class DB:
                 timestamp.vmemory_capacity + "','" + \
                 timestamp.storage_free + "','" + \
                 timestamp.storage_total + "','" + \
-                id + ")"
+                computer.id + ")"
         self.mydb.cursor().execute(query)
         for process in timestamp.processes:
             query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ('" + \
@@ -50,6 +53,9 @@ class DB:
                     process.memory_data + "','" + \
                     process.virtual_memory_data + "','" + \
                     timestamp.captured_time + "')"
+            self.mydb.cursor().execute(query)
+        self.mydb.commit()
+
 
 
         # Timestamp:INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ();
