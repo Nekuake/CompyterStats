@@ -19,14 +19,18 @@ def save_data_to_file(compyter_class):
 # Argument 1: Seconds between timestamps. I recommend at least 60 seconds. If no arguments, 120 seconds are set.
 
 def main():
+    # Initialize DB interactor. Please replace the strings with the informacion of your database.
     try:
         time_interval = sys.argv[1]
     except IndexError:
         # logging.WARN("No arguments provided. 60 sec set.")
         time_interval = 120
+    database = DB("host", "user", "password", "database")
     this_computer = Computer()
+    database.insert_computer_to_table(this_computer)
     while True:
         this_computer.add_timestamp()
+
         print("[", datetime.now(), "]: Saved timestamp. Waiting", time_interval, "secs.")
         try:
             time.sleep(time_interval)

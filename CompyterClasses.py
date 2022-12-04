@@ -1,8 +1,5 @@
 from datetime import datetime
-import socket
-import psutil
-import time
-import netifaces
+import socket, psutil, time, netifaces, re, uuid
 
 
 class Pyrocess:  # Not setting the class name to "Process"
@@ -55,8 +52,10 @@ class Timestamp:
 class Computer:
 
     def __init__(self):
+
+        #Using main MAC address as ID. Not a perfect solution yet
+        self.id= (':'.join(re.findall('..', '%012x' % uuid.getnode())))
         self.name = socket.gethostname()
-        self.network_interfaces = netifaces.interfaces()  # This provides a list of strings with the name of the interfaces
         self.timestamps = {}
 
     def add_timestamp(self):

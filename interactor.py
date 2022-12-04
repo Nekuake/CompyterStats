@@ -25,31 +25,31 @@ class DB:
             query = query + ")"
             self.mydb.cursor().execute(query)
 
-    def insert_computer_to_table(self, name):
+    def insert_computer_to_table(self, computer):
         # Computer: INSERT INTO compyterstats_computer (name) VALUES('name');
-        query = "INSERT INTO compyterstats_computer (name) VALUES('" + name + "')"
+        query = "INSERT INTO compyterstats_computer (id,name) VALUES('" + computer.id + "','" + computer.name + "')"
         self.mydb.cursor().execute(query)
 
     def insert_timestamp_to_table(self, timestamp, id):
         query = "INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, " \
-                "virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES (" + \
-                timestamp.captured_time + "," + \
-                timestamp.cpu_load_list + "," + \
-                timestamp.vmemory_usage + "," + \
-                timestamp.vmemory_capacity + "," + \
-                timestamp.storage_free + "," + \
-                timestamp.storage_total + "," + \
+                "virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ('" + \
+                timestamp.captured_time + "','" + \
+                timestamp.cpu_load_list + "','" + \
+                timestamp.vmemory_usage + "','" + \
+                timestamp.vmemory_capacity + "','" + \
+                timestamp.storage_free + "','" + \
+                timestamp.storage_total + "','" + \
                 id + ")"
         self.mydb.cursor().execute(query)
         for process in timestamp.processes:
-            query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES (" + \
-                    process.pid + "," + \
-                    process.cpu_usage + "," + \
-                    process.name + "," + \
-                    process.io_counter + "," + \
-                    process.memory_data + "," + \
-                    process.virtual_memory_data + "," + \
-                    timestamp.captured_time + ")"
+            query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ('" + \
+                    process.pid + "','" + \
+                    process.cpu_usage + "','" + \
+                    process.name + "','" + \
+                    process.io_counter + "','" + \
+                    process.memory_data + "','" + \
+                    process.virtual_memory_data + "','" + \
+                    timestamp.captured_time + "')"
 
 
         # Timestamp:INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ();
