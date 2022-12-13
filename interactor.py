@@ -10,7 +10,7 @@ class DB:
         self.mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="TestingPassword",
+            password="TestingPassword",             #TESTING SETTINGS. PLEASE CHANGE IN YOUR IMPLEMENTATION
             database="compyterstats"
         )
 
