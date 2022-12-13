@@ -18,8 +18,8 @@ class Timestamp:
     def __init__(self):
         self.captured_time = str(datetime.now())
         # General stats
-        self.cpu_freq = psutil.cpu_freq()
-        self.cpu_load_list = psutil.cpu_percent(interval=0.5, percpu=True)
+        self.cpu_freq = psutil.cpu_freq().current
+        self.cpu_load_list = psutil.cpu_percent(interval=0.5)
         self.vmemory_capacity = psutil.virtual_memory().available >> 20
         self.vmemory_usage = psutil.virtual_memory().total >> 20
         self.storage_free = psutil.disk_usage("C://").free >> 20
@@ -41,7 +41,7 @@ class Timestamp:
                     self.processes.update({current_psutil_process.name(): Pyrocess(current_psutil_process.pid,
                                                                                    current_psutil_process.name(),
                                                                                    (current_psutil_process.cpu_percent() / psutil.cpu_count()),
-                                                                                   current_psutil_process.io_counters(),
+                                                                                   current_psutil_process.io_counters().read_count,
                                                                                    current_psutil_process.memory_info().rss,
                                                                                    current_psutil_process.memory_info().vms)})
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):

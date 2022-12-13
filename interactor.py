@@ -8,10 +8,10 @@ from CompyterClasses import Computer, Timestamp
 class DB:
     def __init__(self, host, user, password, database):
         self.mydb = mysql.connector.connect(
-            host="host",
-            user="user",
-            password="pass",
-            database="database"
+            host="localhost",
+            user="root",
+            password="TestingPassword",
+            database="compyterstats"
         )
 
     def create_table(self, table_name, column_names, column_types):
@@ -37,21 +37,23 @@ class DB:
         query = "INSERT INTO compyterstats_timestamp (datetime_captured, avg_cpu_usage, virtual_memory_usage, " \
                 "virtual_memory_capacity, disk_usage, disk_capacity, computer_id) VALUES ('" + \
                 timestamp.captured_time + "','" + \
-                timestamp.cpu_load_list + "','" + \
-                timestamp.vmemory_usage + "','" + \
-                timestamp.vmemory_capacity + "','" + \
-                timestamp.storage_free + "','" + \
-                timestamp.storage_total + "','" + \
-                computer.id + ")"
+                str(timestamp.cpu_load_list) + "','" + \
+                str(timestamp.vmemory_usage) + "','" + \
+                str(timestamp.vmemory_capacity) + "','" + \
+                str(timestamp.storage_free) + "','" + \
+                str(timestamp.storage_total) + "','" + \
+                computer.id + "')"
+        print(query)
         self.mydb.cursor().execute(query)
+        self.mydb.commit()
         for process in timestamp.processes:
             query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ('" + \
-                    process.pid + "','" + \
-                    process.cpu_usage + "','" + \
-                    process.name + "','" + \
-                    process.io_counter + "','" + \
-                    process.memory_data + "','" + \
-                    process.virtual_memory_data + "','" + \
+                    str(process.pid) + "','" + \
+                    str(process.cpu_usage) + "','" + \
+                    str(process.name) + "','" + \
+                    str(process.io_counter) + "','" + \
+                    str(process.memory_data) + "','" + \
+                    str(process.virtual_memory_data) + "','" + \
                     timestamp.captured_time + "')"
             self.mydb.cursor().execute(query)
         self.mydb.commit()
