@@ -24,10 +24,10 @@ class Timestamp:
         self.vmemory_usage = psutil.virtual_memory().total >> 20
         self.storage_free = psutil.disk_usage("C://").free >> 20
         self.storage_total = psutil.disk_usage("C://").total >> 20
-        self.processes = {}
+        self.processes = []
         # Get all processes
         temp_processes = [psutil.Process(proc.pid) for proc in psutil.process_iter()]
-        process_list = {}
+        process_list = []
         for current_psutil_process in temp_processes:
             try:
                 with current_psutil_process.oneshot():
@@ -38,12 +38,12 @@ class Timestamp:
         for current_psutil_process in temp_processes:
             try:
                 with current_psutil_process.oneshot():
-                    self.processes.update({current_psutil_process.name(): Pyrocess(current_psutil_process.pid,
-                                                                                   current_psutil_process.name(),
-                                                                                   (current_psutil_process.cpu_percent() / psutil.cpu_count()),
-                                                                                   current_psutil_process.io_counters().read_count,
-                                                                                   current_psutil_process.memory_info().rss,
-                                                                                   current_psutil_process.memory_info().vms)})
+                    self.processes.append(Pyrocess(current_psutil_process.pid,
+                                        current_psutil_process.name(),
+                                        (current_psutil_process.cpu_percent() / psutil.cpu_count()),
+                                        current_psutil_process.io_counters().read_count,
+                                        current_psutil_process.memory_info().rss,
+                                        current_psutil_process.memory_info().vms))
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
         # self.processes.sort(key=lambda x: x['cpu_percent'], reverse=True)

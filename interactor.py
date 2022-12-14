@@ -49,14 +49,19 @@ class DB:
         for process in timestamp.processes:
             query = "INSERT INTO compyterstats_process (pid, cpu_usage, name, io_counter, memory_data, virtual_memory_data, origin_timestamp_id) VALUES ('" + \
                     str(process.pid) + "','" + \
-                    str(process.cpu_usage) + "','" + \
+                    str(process.cpu) + "','" + \
                     str(process.name) + "','" + \
                     str(process.io_counter) + "','" + \
-                    str(process.memory_data) + "','" + \
-                    str(process.virtual_memory_data) + "','" + \
+                    str(process.memory[0]) + "','" + \
+                    str(process.virtual_memory) + "','" + \
                     timestamp.captured_time + "')"
-            self.mydb.cursor().execute(query)
-        self.mydb.commit()
+
+            try:
+                self.mydb.cursor().execute(query)
+                self.mydb.commit()
+            except:
+                print("===========ERROR==========")
+                print(query)
 
 
 

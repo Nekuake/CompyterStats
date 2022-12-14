@@ -24,7 +24,7 @@ class Process(models.Model):
     origin_timestamp=models.ForeignKey('Timestamp', on_delete=models.CASCADE)
     pid=models.IntegerField('process id')
     cpu_usage=models.FloatField('cpu usage per process')
-    name=models.CharField(max_length=30)
+    name=models.CharField(max_length=100)
     io_counter=models.CharField(max_length=30)
     memory_data=models.FloatField()
     virtual_memory_data=models.FloatField()
