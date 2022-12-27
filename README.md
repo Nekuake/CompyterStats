@@ -29,6 +29,6 @@ Right now I haven't a clear sense about which data is useful and needed, but I a
 This and other design choices are yet to be made and determined. I'm always open for suggestions.
 
 ## What's the state of the project right now?
-As of December 27th, the data gets added to the MySQL database.
+As of December 27th, the data gets added to the MySQL database. The only thing left is the frontend.
 
 On the other hand, if you have any suggestion that isn't related to fake confidential info being exposed, feel free to ping me or make a PR! I'm learning and any advice is greatly appreaciated.
