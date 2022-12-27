@@ -21,6 +21,8 @@ python manage.py migrate
 ```
 4. Run data_loop.py 
 
+If you have any trouble while trying to set it up, don't hesitate to ping me or create an issue.
+
 ## How does it (going to) work?
 A main computer hosts the web interface, showing data gathered from all the others computers. These send the data to the main computer so it can include the information in the main database. This design implies that the program will leave a heavier footprint in the main computer but a smaller one in the other ones.
 
