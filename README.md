@@ -9,6 +9,18 @@ The only required thing apart from the dependencies stated in the requirements.t
 
 I highly recommend using a Virtual Environment.
 
+## Installation
+
+1. Install MySQL and create a user, password and database.
+2. Put the access credentials and database name in *interactor.py* and  */compyter_stats/compyter_stats/settings.py*
+3. Migrate the database using Django:
+```
+cd compyter_stats
+python manage.py makemigrations compyter_stats  
+python manage.py migrate
+```
+4. Run data_loop.py 
+
 ## How does it (going to) work?
 A main computer hosts the web interface, showing data gathered from all the others computers. These send the data to the main computer so it can include the information in the main database. This design implies that the program will leave a heavier footprint in the main computer but a smaller one in the other ones.
 
@@ -17,6 +29,6 @@ Right now I haven't a clear sense about which data is useful and needed, but I a
 This and other design choices are yet to be made and determined. I'm always open for suggestions.
 
 ## What's the state of the project right now?
-As of September 13th of 2022, this projects is almost just testing of the Django framework. Any secret data here is not being used in any environment exposed to the Internet. You can scan for passwords here and make a pull request if you want to but it will be most probably ignored. 
+As of December 27th, the data gets added to the MySQL database.
 
 On the other hand, if you have any suggestion that isn't related to fake confidential info being exposed, feel free to ping me or make a PR! I'm learning and any advice is greatly appreaciated.
